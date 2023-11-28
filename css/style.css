@@ -202,6 +202,14 @@ footer div{
     margin: 1em;
 }
 
+a{
+    text-decoration: none;
+}
+
+.contenido-oculto {
+    display: none;
+}
+
 /* Media query para pantallas con ancho igual o menor a 600px */
 @media (max-width: 756px) {
     h1{
@@ -218,6 +226,9 @@ footer div{
     }
     h2{
     font-size: 1em;
+    margin: 1em auto;
+    text-align: center;
+    width: 25%;
     }
     .about p{
     font-weight:200;
@@ -225,4 +236,18 @@ footer div{
     background: rgba(255, 255, 255, 0.726); 
     z-index: -1; 
     }
+    .about p {
+        display: none;
+    }
+    .contenido-oculto {
+        display: block;
+        font-weight:300;
+        background: rgba(255, 255, 255, 0.726); 
+        z-index: -1; 
+        text-align: center;
+        width: 50%;
+        margin: 1em auto;
+        padding: 1em;
+    }
+
 }
