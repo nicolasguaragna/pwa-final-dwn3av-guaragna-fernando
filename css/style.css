@@ -32,7 +32,7 @@ header{
 	text-align:center;
 }
 h1{
-	font-weight: bold;
+	font-size: 2em;
 	color:#e0e5e9;
 	margin: 0;
 	height: 2.5em;
@@ -65,7 +65,7 @@ h2{
     color: #ffffff;
     margin: 1em auto;
     text-align: center;
-    font-weight:500;
+    font-size: 1.5em;
     animation: girar 2s ease 2; 
     width: 15%;
 }
@@ -200,4 +200,12 @@ footer ul li{
 
 footer div{
     margin: 1em;
+}
+
+/* Media query para pantallas con ancho igual o menor a 600px */
+@media (max-width: 600px) {
+    body {
+      font-size: 14px;
+    }
+  
 }
