@@ -142,6 +142,8 @@ h2{
 }
 
 label{
+    background-color: #FFA07A;
+    border-radius: 15px;
     color: #ffffff;
     padding: 6px 10px;
 }
