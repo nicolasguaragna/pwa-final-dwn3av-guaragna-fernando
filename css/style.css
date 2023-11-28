@@ -146,13 +146,16 @@ label{
     padding: 6px 10px;
 }
 
-#botonBuscar{
+#botonBuscar {
     border-radius: 15px;
-    margin: 0 1em;
+    margin: 1em auto;
     font-size: 0.8em;
-    padding: 0 0.7em !important;
-    color:white;
+    padding: 0.7em; 
+    color: white;
     background-color: #FFA07A !important;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
 }
 
 #botonBuscar:hover{
