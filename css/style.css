@@ -68,3 +68,53 @@ h2{
     transform: rotate(360deg);
     }
 }
+
+.about {
+    width: 50%;
+    margin: 1em auto;
+    padding: 1em;
+    font-size: 1em;
+    text-align: center;
+}
+.about p {
+    font-weight:500;
+    background: rgba(255, 255, 255, 0.8); 
+    z-index: -1; 
+}
+.about ul{
+    list-style: none;
+}
+.about ul li {
+    line-height: 2.5em;
+    margin: 2em;
+}
+.about > ul li::before {
+    content: "\f00c";
+    margin: 0 20px 0;
+    color:#252c16;
+}
+
+.btn-color {
+	color:white;
+}
+.btn-color:hover {
+	color:#c6a84b ;
+}
+.btn-peliculas {
+	background-color:#FFA07A ;
+	color: white;
+    padding:.5em;
+    border-radius: 10px;
+
+}
+.btn-peliculas:hover {
+	color: #FFA07A;
+    text-decoration: none !important;
+}
+
+.ir {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh; 
+}
