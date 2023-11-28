@@ -164,3 +164,24 @@ label{
 .card {
     margin: 0 auto !important;
 }
+
+footer{
+	width: 100%;
+	text-align:center;
+	background: #001F3F ;
+    padding-top: 1em;
+	padding-bottom: 0.2em;
+    margin-top: auto; /* Coloca el footer al final de la página */
+}
+
+footer ul li{
+	color: white;
+	background: #001F3F ;
+    line-height: 1.5em;
+	font-size: 0.9em;
+	list-style-type: none;
+}
+
+footer div{
+    margin: 1em;
+}
