@@ -82,18 +82,22 @@ h2{
     font-size: 1em;
     text-align: center;
 }
+
 .about p{
     font-weight:500;
     background: rgba(255, 255, 255, 0.8); 
     z-index: -1; 
 }
+
 .about ul{
     list-style: none;
 }
+
 .about ul li{
     line-height: 2.5em;
     margin: 2em;
 }
+
 .about > ul li::before{
     content: "\f00c";
     margin: 0 20px 0;
@@ -103,16 +107,18 @@ h2{
 .btn-color{
 	color:white;
 }
+
 .btn-color:hover{
 	color:#c6a84b ;
 }
+
 .btn-peliculas{
 	background-color:#FFA07A ;
 	color: white;
     padding:.5em;
     border-radius: 10px;
-
 }
+
 .btn-peliculas:hover{
 	color: #FFA07A;
     text-decoration: none !important;
@@ -125,7 +131,16 @@ h2{
     height: 20vh; 
 }
 
+.input{
+    width: 35%;
+    font-size: 1em;
+    padding-right: .5em;
+    margin: 0 auto;
+}
 
+label{
+    padding: 6px 10px;
+}
 
 #botonBuscar{
     border-radius: 15px;
@@ -135,11 +150,17 @@ h2{
     color:white;
     background-color: #FFA07A !important;
 }
+
 #botonBuscar:hover{
 	color:#001F3F;
 }
+
 #respuesta{
     flex: 1;
     width: 70%;
     margin: 0 auto;
+}
+
+.card {
+    margin: 0 auto !important;
 }
