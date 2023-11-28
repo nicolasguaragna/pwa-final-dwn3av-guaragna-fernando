@@ -1,0 +1,13 @@
+body {
+    background-image: url('../img/carteles2.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif, 'Poppins', sans-serif;
+}
