@@ -41,6 +41,10 @@ h1{
     text-transform: uppercase; 
 }
 
+a{
+    text-decoration: none;
+}
+
 .navbar{
 	background-color: #001F3F;
 }
