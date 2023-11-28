@@ -32,7 +32,7 @@ header{
 	text-align:center;
 }
 h1{
-	font-size: 2.5em;
+	font-weight: bold;
 	color:#e0e5e9;
 	margin: 0;
 	height: 2.5em;
@@ -61,7 +61,7 @@ h2{
     color: #ffffff;
     margin: 1em auto;
     text-align: center;
-    font-weight: bold;
+    font-weight:500;
     animation: girar 2s ease 2; 
     width: 15%;
 }
@@ -90,7 +90,7 @@ h2{
 }
 
 .about p{
-    font-weight:500;
+    font-weight:400;
     background: rgba(255, 255, 255, 0.726); 
     z-index: -1; 
 }
@@ -122,7 +122,7 @@ h2{
 	background-color:#FFA07A ;
 	color: white;
     padding:.5em;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .btn-peliculas:hover{
