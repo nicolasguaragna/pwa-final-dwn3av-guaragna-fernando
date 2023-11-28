@@ -172,7 +172,7 @@ footer{
 	background: #001F3F ;
     padding-top: 1em;
 	padding-bottom: 0.2em;
-    margin-top: auto; /* Coloca el footer al final de la página */
+    margin-top: auto;
 }
 
 footer ul li{
