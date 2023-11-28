@@ -1,4 +1,4 @@
-body {
+body{
     background-image: url('../img/carteles2.jpg'); 
     background-size: cover;
     background-position: center;
@@ -24,11 +24,11 @@ body::before {
 }
 
 
-header {
+header{
 	background-color: #001F3F;
 	text-align:center;
 }
-h1 {
+h1{
 	font-size: 2.5em;
 	color:#e0e5e9;
 	margin: 0;
@@ -38,17 +38,17 @@ h1 {
     text-transform: uppercase; 
 }
 
-.navbar {
+.navbar{
 	background-color: #001F3F;
 }
 
-#posicion:hover {
+#posicion:hover{
     color: #e0e5e9 !important;
     font-weight: bold;
     text-decoration:dotted;
 }
 
-.nav-link:hover {
+.nav-link:hover{
     color:#e0e5e9 !important;
 }
 
@@ -69,14 +69,14 @@ h2{
     }
 }
 
-.about {
+.about{
     width: 50%;
     margin: 1em auto;
     padding: 1em;
     font-size: 1em;
     text-align: center;
 }
-.about p {
+.about p{
     font-weight:500;
     background: rgba(255, 255, 255, 0.8); 
     z-index: -1; 
@@ -84,30 +84,30 @@ h2{
 .about ul{
     list-style: none;
 }
-.about ul li {
+.about ul li{
     line-height: 2.5em;
     margin: 2em;
 }
-.about > ul li::before {
+.about > ul li::before{
     content: "\f00c";
     margin: 0 20px 0;
     color:#252c16;
 }
 
-.btn-color {
+.btn-color{
 	color:white;
 }
-.btn-color:hover {
+.btn-color:hover{
 	color:#c6a84b ;
 }
-.btn-peliculas {
+.btn-peliculas{
 	background-color:#FFA07A ;
 	color: white;
     padding:.5em;
     border-radius: 10px;
 
 }
-.btn-peliculas:hover {
+.btn-peliculas:hover{
 	color: #FFA07A;
     text-decoration: none !important;
 }
@@ -117,4 +117,23 @@ h2{
     justify-content: center;
     align-items: center;
     height: 20vh; 
+}
+
+
+
+#botonBuscar{
+    border-radius: 15px;
+    margin: 0 1em;
+    font-size: 0.8em;
+    padding: 0 0.7em !important;
+    color:white;
+    background-color: #FFA07A !important;
+}
+#botonBuscar:hover{
+	color:#001F3F;
+}
+#respuesta{
+    flex: 1;
+    width: 70%;
+    margin: 0 auto;
 }
