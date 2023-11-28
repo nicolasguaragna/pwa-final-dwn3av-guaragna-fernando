@@ -203,9 +203,27 @@ footer div{
 }
 
 /* Media query para pantallas con ancho igual o menor a 600px */
-@media (max-width: 600px) {
-    body {
-      font-size: 14px;
+@media (max-width: 756px) {
+    h1{
+     font-size: 1.5em;   
     }
-  
+    h2{
+    font-size: 1em;
+    f
+    }
+}
+
+@media (max-width: 573px) {
+    h1{
+     font-size: 1em;   
+    }
+    h2{
+        font-size: 1em;
+    }
+    .about p{
+        font-weight:200;
+        font-size: 14px;
+        background: rgba(255, 255, 255, 0.726); 
+        z-index: -1; 
+    }
 }
