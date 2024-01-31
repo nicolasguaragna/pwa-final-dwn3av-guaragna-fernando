@@ -1,6 +1,6 @@
 window.addEventListener("load", pagOnline);
 
-function pagOnline() {
+async function pagOnline() {
 var formulario = document.getElementById("formulario");
 
 if (formulario !== null) {
@@ -10,29 +10,42 @@ if (formulario !== null) {
     // Recupera la última búsqueda almacenada en localStorage y llena el campo de búsqueda
     const ultimaBusqueda = localStorage.getItem('ultimaBusqueda');
     if (ultimaBusqueda) {
-    formulario.elements['busquedaUsuario'].value = ultimaBusqueda;
+        formulario.elements['busquedaUsuario'].value = ultimaBusqueda;
     }
   }
 }
 
-
-function buscar(evento) {
+async function buscar(evento) {
 evento.preventDefault();
 
 const form = new FormData(this);
+
+  // Verifica si el formulario es válido
+  if (!this.checkValidity()) {
+    console.warn('El formulario no es válido.');
+    return;
+  }
+
 const busquedaRealizada = form.get("busquedaUsuario");
 const apiUrl = "https://www.omdbapi.com";
 API_KEY = "3c08695a";
 
-let fetchPromise = fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
+try {
+const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
     console.log(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
-    fetchPromise
-    .then((response) => response.json())
-    .then(consultaApi)
-    .catch((error) => console.warn(error.message));
+    
+    if (!response.ok) {
+        throw new Error(`Error de red: ${response.status}`);
+        }
 
-      // Almacena la última búsqueda en localStorage
-    localStorage.setItem('ultimaBusqueda', busquedaRealizada);
+        const infoPeli = await response.json();
+        consultaApi(infoPeli);
+
+        // Almacena la última búsqueda en localStorage
+        localStorage.setItem('ultimaBusqueda', busquedaRealizada);
+    } catch (error) {
+        console.warn(error.message);
+    }
 }
 
 function consultaApi(infoPeli) {
