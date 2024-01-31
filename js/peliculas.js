@@ -6,8 +6,15 @@ var formulario = document.getElementById("formulario");
 if (formulario !== null) {
     formulario.addEventListener("submit", buscar);
     console.log(formulario);
+
+    // Recupera la última búsqueda almacenada en localStorage y llena el campo de búsqueda
+    const ultimaBusqueda = localStorage.getItem('ultimaBusqueda');
+    if (ultimaBusqueda) {
+    formulario.elements['busquedaUsuario'].value = ultimaBusqueda;
+    }
+  }
 }
-}
+
 
 function buscar(evento) {
 evento.preventDefault();
@@ -23,6 +30,9 @@ let fetchPromise = fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
     .then((response) => response.json())
     .then(consultaApi)
     .catch((error) => console.warn(error.message));
+
+      // Almacena la última búsqueda en localStorage
+    localStorage.setItem('ultimaBusqueda', busquedaRealizada);
 }
 
 function consultaApi(infoPeli) {
