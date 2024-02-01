@@ -1,21 +1,19 @@
 let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent Chrome 76 and earlier from automatically showing the prompt
+    
     event.preventDefault();
     
-    // Stash the event so it can be triggered later
     deferredPrompt = event;
 
-    // Show the install button
     const installButton = document.getElementById('installButton');
     if (installButton) {
         installButton.style.display = 'block';
         installButton.addEventListener('click', () => {
-            // Show the prompt
+            
             deferredPrompt.prompt();
 
-            // Wait for the user to respond to the prompt
+            
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
@@ -23,9 +21,9 @@ window.addEventListener('beforeinstallprompt', (event) => {
                     console.log('User dismissed the install prompt');
                 }
 
-                // Clear the deferred prompt variable
+                
                 deferredPrompt = null;
-                installButton.style.display = 'none'; // Hide the install button after installation
+                installButton.style.display = 'none'; 
             });
         });
     }
