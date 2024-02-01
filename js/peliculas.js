@@ -2,8 +2,7 @@ let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (event) => {
 
-    event.preventDefault();
-    
+    event.preventDefault(); 
 
     deferredPrompt = event;
 
@@ -160,6 +159,7 @@ function enviarFormularioContacto(datosFormulario) {
             console.log('Mensaje enviado con éxito:', data.message);
         } else {
             console.log('Error al enviar mensaje:', data.error);
+            mostrarMensajeError('Hubo un error al enviar el formulario de contacto. Por favor, inténtalo de nuevo más tarde.');
         }
     })
     .catch((error) => {
