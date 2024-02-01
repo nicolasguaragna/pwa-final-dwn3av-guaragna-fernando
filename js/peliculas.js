@@ -1,19 +1,21 @@
 let deferredPrompt;
 
 window.addEventListener('beforeinstallprompt', (event) => {
-    
+    // Prevent Chrome 76 and earlier from automatically showing the prompt
     event.preventDefault();
     
+    // Stash the event so it can be triggered later
     deferredPrompt = event;
 
+    // Show the install button
     const installButton = document.getElementById('installButton');
     if (installButton) {
         installButton.style.display = 'block';
         installButton.addEventListener('click', () => {
-            
+            // Show the prompt
             deferredPrompt.prompt();
 
-            
+            // Wait for the user to respond to the prompt
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
@@ -21,9 +23,9 @@ window.addEventListener('beforeinstallprompt', (event) => {
                     console.log('User dismissed the install prompt');
                 }
 
-                
+                // Clear the deferred prompt variable
                 deferredPrompt = null;
-                installButton.style.display = 'none'; 
+                installButton.style.display = 'none'; // Hide the install button after installation
             });
         });
     }
@@ -34,6 +36,7 @@ window.addEventListener("load", async function() {
         await pagOnline();
     } catch (error) {
         console.error(error.message);
+        mostrarMensajeError('Hubo un error al cargar la página. Por favor, inténtalo de nuevo más tarde.');
     }
 });
 
@@ -82,6 +85,18 @@ async function buscar(evento) {
         localStorage.setItem('ultimaBusqueda', busquedaRealizada);
     } catch (error) {
         console.warn(error.message);
+        mostrarMensajeError('Hubo un error al buscar la película. Por favor, inténtalo de nuevo más tarde.');
+    }
+}
+
+// Función para mostrar mensajes de error al usuario
+function mostrarMensajeError(mensaje) {
+    // Puedes implementar cómo deseas mostrar el mensaje, por ejemplo, puedes crear un elemento HTML para mostrarlo.
+    const mensajeErrorElement = document.getElementById('mensajeError');
+
+    if (mensajeErrorElement) {
+        mensajeErrorElement.textContent = mensaje;
+        mensajeErrorElement.style.display = 'block';
     }
 }
 
@@ -145,5 +160,6 @@ function enviarFormularioContacto(datosFormulario) {
     })
     .catch((error) => {
         console.error('Error en fetch:', error);
+        mostrarMensajeError('Hubo un error al enviar el formulario de contacto. Por favor, inténtalo de nuevo más tarde.');
     });
 }
