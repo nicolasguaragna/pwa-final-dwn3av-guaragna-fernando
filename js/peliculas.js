@@ -55,6 +55,22 @@ async function pagOnline() {
     }
 }
 
+// Función que realiza la consulta a la API - devuelve una promesa y maneja toda la lógica de la consulta a la API
+async function realizarConsultaApi(busquedaRealizada) {
+    const apiUrl = "https://www.omdbapi.com";
+    const API_KEY = "3c08695a";
+
+    const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
+
+    if (!response.ok) {
+        throw new Error(`Error de red: ${response.status}`);
+    }
+
+    const infoPeli = await response.json();
+    return infoPeli;
+}
+
+//esta funcion utiliza await para esperar que la consulta a la API se complete antes de continuar con el resto del código.
 async function buscar(evento) {
     evento.preventDefault();
 
@@ -67,18 +83,9 @@ async function buscar(evento) {
     }
 
     const busquedaRealizada = form.get("busquedaUsuario");
-    const apiUrl = "https://www.omdbapi.com";
-    const API_KEY = "3c08695a";
 
     try {
-        const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
-        console.log(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
-
-        if (!response.ok) {
-            throw new Error(`Error de red: ${response.status}`);
-        }
-
-        const infoPeli = await response.json();
+        const infoPeli = await realizarConsultaApi(busquedaRealizada);
         consultaApi(infoPeli);
 
         // Almacena la última búsqueda en localStorage
@@ -91,7 +98,7 @@ async function buscar(evento) {
 
 // Función para mostrar mensajes de error al usuario
 function mostrarMensajeError(mensaje) {
-    // Puedes implementar cómo deseas mostrar el mensaje, por ejemplo, puedes crear un elemento HTML para mostrarlo.
+    
     const mensajeErrorElement = document.getElementById('mensajeError');
 
     if (mensajeErrorElement) {

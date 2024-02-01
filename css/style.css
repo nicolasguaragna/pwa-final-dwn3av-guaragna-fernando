@@ -211,11 +211,11 @@ a{
 }
 
 #formularioContacto {
-    width: 80%; /* Ajusta según tus necesidades */
-    max-width: 600px; /* Ajusta según tus necesidades */
+    width: 80%; 
+    max-width: 600px; 
     margin: auto;
     padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Ajusta según tus necesidades */
+    background-color: rgba(255, 255, 255, 0.8); 
     border-radius: 15px;
 }
 
@@ -246,6 +246,24 @@ a{
 #formularioContacto button:hover {
     background-color: #001F3F;
 }
+
+body.offline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-size: 36px; 
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(255, 0, 0, 0.8) 0%, rgba(255, 0, 0, 0.3) 100%); /* Fondo difuminado rojo */
+    color: #fff; 
+    padding: 20px; 
+    margin: 0; 
+}
+
+.offline {
+    font-weight: bold; 
+}
+
 
 /* Media query para pantallas con ancho igual o menor a 600px */
 @media (max-width: 756px) {
