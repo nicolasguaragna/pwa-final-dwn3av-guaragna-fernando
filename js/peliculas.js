@@ -89,7 +89,9 @@ function consultaApi(infoPeli) {
 
 function enviarFormularioContacto(datosFormulario) {
     const apiUrl = "http://127.0.0.1:5501/api-contacto.php";
-
+    
+    console.log('Enviando formulario:', datosFormulario);
+    
     fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -104,9 +106,18 @@ function enviarFormularioContacto(datosFormulario) {
         return response.json();
     })
     .then((data) => {
-        console.log(data);
+        console.log('Respuesta del servidor:', data);
+
+        // Muestra un mensaje en la consola
+        console.log('Recibimos tu mensaje, gracias.');
+
+        // Muestra un mensaje en la interfaz del usuario
+        alert('Recibimos tu mensaje, gracias.');
     })
     .catch((error) => {
         console.error(error.message);
+
+        // Muestra un mensaje en la consola
+        console.error('Hubo un error al enviar el formulario.');
     });
 }
