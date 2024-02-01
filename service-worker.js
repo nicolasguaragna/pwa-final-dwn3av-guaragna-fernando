@@ -39,36 +39,47 @@ function shouldAcceptResponse(response) {
 }
 
 self.addEventListener('fetch', event => {
+    // Si es una solicitud POST, simplemente realiza la solicitud a la red sin pasar por el caché
+    if (event.request.method === 'POST') {
+        event.respondWith(
+            fetch(event.request)
+                .then(response => {
+                    return response;
+                })
+                .catch(error => {
+                    console.error('Error en fetch:', error);
+                })
+        );
+    } else {
+        // Para solicitudes GET, utiliza el caché según la lógica anterior
+        event.respondWith(
+            caches.open(cacheName).then(cache => {
+                return cache.match(event.request).then(response => {
+                    if (response) {
+                        return response;
+                    }
 
-    event.respondWith(
-        caches.open(cacheName).then(cache => { 
-        return cache.match(event.request).then(response => {
+                    return fetch(event.request).then(
+                        function(response) {
+                            if (shouldAcceptResponse(response)) {
+                                var responseToCache = response.clone();
 
-            if (response) {
-            return response;
-            }
+                                caches.open(cacheName)
+                                    .then(function(cache) {
+                                        cache.put(event.request, responseToCache);
+                                    });
 
-        return fetch(event.request).then(
-            function(response) {
-
-            if(shouldAcceptResponse(response)) {
-                return response;
-            }
-
-            var responseToCache = response.clone();
-
-            caches.open(cacheName)
-                .then(function(cache) {
-                cache.put(event.request, responseToCache);
+                                return response;
+                            } else {
+                                return response;
+                            }
+                        }
+                    );
+                }).catch(error => {
+                    console.log('Fallo SW', error); 
+                    return caches.match('offline.html');
                 });
-
-            return response;
-            }
-        )
-        }).catch(error => {
-            console.log('Fallo SW', error); 
-            return caches.match('offline.html');
-        });
-        })
-    );
+            })
+        );
+    }
 });

@@ -71,7 +71,7 @@
                 <!-- Sección de Contacto -->
         <section id="contacto">
             <h2>Contacto</h2>
-            <form id="formularioContacto">
+            <form id="formularioContacto" method="POST">
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
 
@@ -87,6 +87,9 @@
                 <button type="submit">Enviar mensaje</button>
             </form>
         </section>
+
+
+        <button id="installButton" class="btn btn-success" style="display: none;">Instalar PWA</button>
 
         <footer>
             <ul>

@@ -1,3 +1,36 @@
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Prevent Chrome 76 and earlier from automatically showing the prompt
+    event.preventDefault();
+    
+    // Stash the event so it can be triggered later
+    deferredPrompt = event;
+
+    // Show the install button
+    const installButton = document.getElementById('installButton');
+    if (installButton) {
+        installButton.style.display = 'block';
+        installButton.addEventListener('click', () => {
+            // Show the prompt
+            deferredPrompt.prompt();
+
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+
+                // Clear the deferred prompt variable
+                deferredPrompt = null;
+                installButton.style.display = 'none'; // Hide the install button after installation
+            });
+        });
+    }
+});
+
 window.addEventListener("load", async function() {
     try {
         await pagOnline();
@@ -7,18 +40,18 @@ window.addEventListener("load", async function() {
 });
 
 async function pagOnline() {
-var formulario = document.getElementById("formulario");
+    var formulario = document.getElementById("formulario");
 
-if (formulario !== null) {
-    formulario.addEventListener("submit", buscar);
-    console.log(formulario);
+    if (formulario !== null) {
+        formulario.addEventListener("submit", buscar);
+        console.log(formulario);
 
-    // Recupera la última búsqueda almacenada en localStorage y llena el campo de búsqueda
-    const ultimaBusqueda = localStorage.getItem('ultimaBusqueda');
-    if (ultimaBusqueda) {
-        formulario.elements['busquedaUsuario'].value = ultimaBusqueda;
+        // Recupera la última búsqueda almacenada en localStorage y llena el campo de búsqueda
+        const ultimaBusqueda = localStorage.getItem('ultimaBusqueda');
+        if (ultimaBusqueda) {
+            formulario.elements['busquedaUsuario'].value = ultimaBusqueda;
+        }
     }
-}
 }
 
 async function buscar(evento) {
@@ -34,12 +67,12 @@ async function buscar(evento) {
 
     const busquedaRealizada = form.get("busquedaUsuario");
     const apiUrl = "https://www.omdbapi.com";
-    API_KEY = "3c08695a";
+    const API_KEY = "3c08695a";
 
     try {
         const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
         console.log(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
-        
+
         if (!response.ok) {
             throw new Error(`Error de red: ${response.status}`);
         }
@@ -79,19 +112,19 @@ function consultaApi(infoPeli) {
         event.preventDefault();
 
         const nombre = document.getElementById("nombre").value;
+        const apellido = document.getElementById("apellido").value;
         const email = document.getElementById("email").value;
         const mensaje = document.getElementById("mensaje").value;
 
         // Aquí puedes realizar la solicitud POST al servidor con los datos del formulario
-        enviarFormularioContacto({ nombre, email, mensaje });
+        enviarFormularioContacto({ nombre, apellido, email, mensaje });
     });
 }
 
 function enviarFormularioContacto(datosFormulario) {
-    const apiUrl = "http://127.0.0.1:5501/api-contacto.php";
-    
-    console.log('Enviando formulario:', datosFormulario);
-    
+    console.log('Datos del formulario:', datosFormulario);
+    const apiUrl = "http://127.0.0.1:5501/contacto.php";  // Asegúrate de que la URL sea correcta
+
     fetch(apiUrl, {
         method: "POST",
         headers: {
@@ -106,18 +139,13 @@ function enviarFormularioContacto(datosFormulario) {
         return response.json();
     })
     .then((data) => {
-        console.log('Respuesta del servidor:', data);
-
-        // Muestra un mensaje en la consola
-        console.log('Recibimos tu mensaje, gracias.');
-
-        // Muestra un mensaje en la interfaz del usuario
-        alert('Recibimos tu mensaje, gracias.');
+        if (data.success) {
+            console.log('Mensaje enviado con éxito:', data.message);
+        } else {
+            console.log('Error al enviar mensaje:', data.error);
+        }
     })
     .catch((error) => {
-        console.error(error.message);
-
-        // Muestra un mensaje en la consola
-        console.error('Hubo un error al enviar el formulario.');
+        console.error('Error en fetch:', error);
     });
 }
