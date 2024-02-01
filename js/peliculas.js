@@ -36,16 +36,16 @@ async function buscar(evento) {
     const apiUrl = "https://www.omdbapi.com";
     API_KEY = "3c08695a";
 
-try {
-    const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
-    console.log(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
-    
-    if (!response.ok) {
-        throw new Error(`Error de red: ${response.status}`);
-    }
+    try {
+        const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
+        console.log(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
+        
+        if (!response.ok) {
+            throw new Error(`Error de red: ${response.status}`);
+        }
 
-    const infoPeli = await response.json();
-    consultaApi(infoPeli);
+        const infoPeli = await response.json();
+        consultaApi(infoPeli);
 
         // Almacena la última búsqueda en localStorage
         localStorage.setItem('ultimaBusqueda', busquedaRealizada);
@@ -104,7 +104,6 @@ function enviarFormularioContacto(datosFormulario) {
         return response.json();
     })
     .then((data) => {
-        // Aquí puedes manejar la respuesta del servidor, como mostrar un mensaje al usuario
         console.log(data);
     })
     .catch((error) => {
