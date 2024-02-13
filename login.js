@@ -31,7 +31,7 @@ const application = new Vue({
     },
     methods: {
         login() {
-            alert("test login");
+            console.log(this.email, this.password);
         }
     }
 }
