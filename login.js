@@ -31,8 +31,17 @@ const application = new Vue({
     },
     methods: {
         login() {
-            console.log(this.email, this.password);
-        }
+            signInWithEmailAndPassword(auth, this.email, this.password)
+                .then(userCredential => {
+                    window.location.replace("http://127.0.0.1:5501/index.html");
+                })
+                .catch(error => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+
+                    alert(errorMessage);
+                })    
+        }   
     }
 }
 );
