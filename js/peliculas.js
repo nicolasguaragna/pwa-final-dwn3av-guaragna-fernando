@@ -1,49 +1,53 @@
 let deferredPrompt;
 
+// evento q se dispara antes de q aparezca la solicitud de inst de la PWA
 window.addEventListener('beforeinstallprompt', (event) => {
-
+    // previene q la solicitud de instalacion aparezca autom.
     event.preventDefault(); 
-
     deferredPrompt = event;
 
+    //muestra el boton para instalar la PWA 
     const installButton = document.getElementById('installButton');
     if (installButton) {
         installButton.style.display = 'block';
         installButton.addEventListener('click', () => {
-            
+            //muestra la solicitud de instalacion
             deferredPrompt.prompt();
 
+            //maneja la eleccion del usuario (acepta o rechaza)
             deferredPrompt.userChoice.then((choiceResult) => {
                 if (choiceResult.outcome === 'accepted') {
                     console.log('User accepted the install prompt');
                 } else {
                     console.log('User dismissed the install prompt');
                 }
-
+                
+                //para limpiar la referencia a la solicitud y oculta el boton de instal.
                 deferredPrompt = null;
                 installButton.style.display = 'none'; 
             });
         });
     }
 });
-
-window.addEventListener("load", async function() {
+//este evento se dispara cuando la pag se carga completamente
+window.addEventListener("load", async function() {//llama a la funcion 
     try {
-        await pagOnline();
+        await pagOnline(); //muestra mensaje de error si hay algun problema en la carga
     } catch (error) {
         console.error(error.message);
         mostrarMensajeError('Hubo un error al cargar la página. Por favor, inténtalo de nuevo más tarde.');
     }
 });
-
+//funcion q se ejecuta despues de q la pag se carga completamente
 async function pagOnline() {
     var formulario = document.getElementById("formulario");
-
+    
+    //si hay un formulario, agrega un evento listener para la busqueda
     if (formulario !== null) {
         formulario.addEventListener("submit", buscar);
         console.log(formulario);
 
-        // Recupera la última búsqueda almacenada en localStorage y llena el campo de búsqueda
+        //recupera la última búsqueda almacenada en localStorage y llena el campo de búsqueda
         const ultimaBusqueda = localStorage.getItem('ultimaBusqueda');
         if (ultimaBusqueda) {
             formulario.elements['busquedaUsuario'].value = ultimaBusqueda;
@@ -56,38 +60,44 @@ async function realizarConsultaApi(busquedaRealizada) {
     const apiUrl = "https://www.omdbapi.com";
     const API_KEY = "3c08695a";
 
+    //realiza una solicitud a la API utilizando fecht y espera la respuesta
     const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&t=${busquedaRealizada}`);
 
+    //tira un error si la respuesta no es exitosa
     if (!response.ok) {
         throw new Error(`Error de red: ${response.status}`);
     }
 
+    //parsea la respuesta como json y la devuelve
     const infoPeli = await response.json();
     return infoPeli;
 }
 
-//esta funcion utiliza await para esperar que la consulta a la API se complete antes de continuar con el resto del código.
+// funcion q se llama al realizar una busqueda
 async function buscar(evento) {
     evento.preventDefault();
-
+    
+    //crea objeto formdata con datos del form
     const form = new FormData(this);
 
-    // Verifica si el formulario es válido
+    //para verificar si el formulario es válido
     if (!this.checkValidity()) {
         console.warn('El formulario no es válido.');
         return;
     }
 
+    // obtiene la busqueda del usuario desde el form
     const busquedaRealizada = form.get("busquedaUsuario");
 
     try {
+        //realiza la consulta a la api y espera el resultado
         const infoPeli = await realizarConsultaApi(busquedaRealizada);
         consultaApi(infoPeli);
 
-        // Almacena la última búsqueda en localStorage
+        //almacena la última búsqueda en localStorage
         localStorage.setItem('ultimaBusqueda', busquedaRealizada);
     } catch (error) {
-        console.warn(error.message);
+        console.warn(error.message);//muestra mensaje de error si hay algun problem durante la busqueda
         mostrarMensajeError('Hubo un error al buscar la película. Por favor, inténtalo de nuevo más tarde.');
     }
 }
@@ -96,15 +106,17 @@ async function buscar(evento) {
 function mostrarMensajeError(mensaje) {
     
     const mensajeErrorElement = document.getElementById('mensajeError');
-
+    //si hay elemento de msj con error, lo muestra con el msj proporcionado.
     if (mensajeErrorElement) {
         mensajeErrorElement.textContent = mensaje;
         mensajeErrorElement.style.display = 'block';
     }
 }
 
+//maneja la respuesta de la api y muestra resultados en la pag
 function consultaApi(infoPeli) {
     const resultadoConsulta = document.getElementById("respuesta");
+    //muestra la info de la peli en una card
     resultadoConsulta.innerHTML = `
     <div class="card" style="max-width: 540px;">
         <div class="row no-gutters">
@@ -121,27 +133,28 @@ function consultaApi(infoPeli) {
         </div>
     </div>
     `;
-
+    
     const formularioContacto = document.getElementById("formularioContacto");
 
     formularioContacto.addEventListener("submit", function (event) {
         event.preventDefault();
-
+        //obtiene los valores de los campos del form de contacto
         const nombre = document.getElementById("nombre").value;
         const apellido = document.getElementById("apellido").value;
         const email = document.getElementById("email").value;
         const mensaje = document.getElementById("mensaje").value;
 
-        // Aquí puedes realizar la solicitud POST al servidor con los datos del formulario
+        //llama a la funcion para enviar el formulario de contacto con datos
         enviarFormularioContacto({ nombre, apellido, email, mensaje });
     });
 }
 
+//realizar la solicitud post al servidor con los datos del form
 function enviarFormularioContacto(datosFormulario) {
     console.log('Datos del formulario:', datosFormulario);
-    const apiUrl = "http://127.0.0.1:5501/contacto.php";  // Asegúrate de que la URL sea correcta
+    const apiUrl = "http://127.0.0.1:5501/contacto.php";  
 
-    fetch(apiUrl, {
+    fetch(apiUrl, {//solicitud fetch con datos del form
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -149,12 +162,14 @@ function enviarFormularioContacto(datosFormulario) {
         body: JSON.stringify(datosFormulario),
     })
     .then((response) => {
+        //tira un error si la respuesta no es exitosa.
         if (!response.ok) {
             throw new Error(`Error al enviar formulario: ${response.status}`);
         }
         return response.json();
     })
     .then((data) => {
+        //muestra msj de exito o error segun respuesta del servidor.
         if (data.success) {
             console.log('Mensaje enviado con éxito:', data.message);
         } else {
