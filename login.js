@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+//se importan las funciones de los sdk de firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
 import { getAuth , signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -30,12 +30,12 @@ const application = new Vue({
         password: ""
     },
     methods: {
-        login() {
+        login() {// Iniciar sesión con correo electrónico y contraseña utilizando la autenticación de Firebase
             signInWithEmailAndPassword(auth, this.email, this.password)
-                .then(userCredential => {
+                .then(userCredential => {//Si tiene éxito redirige a otra página
                     window.location.replace("http://127.0.0.1:5501/index.html");
                 })
-                .catch(error => {
+                .catch(error => {// Si hay un error muestra una alerta con el mensaje de error
                     const errorCode = error.code;
                     const errorMessage = error.message;
 
