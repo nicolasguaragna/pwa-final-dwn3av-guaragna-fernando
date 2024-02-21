@@ -19,17 +19,18 @@
 
 </head>
     <body>
+        <!-- encabezado con enlace al inicio y menú de navegación -->
         <header class="container-fluid">
             <a href="index.html">
                 <h1>Listado de Peliculas</h1>
             </a>
             <div class="row">
                 <nav class="col navbar navbar-expand-md navbar-dark">
-
+                    <!-- boton para menu desplegable en dispositivos pequeños-->
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacion" aria-controls="navegacion" aria-expanded="false" aria-label="Menú Hamburguesa">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <!--menu de navegacion-->
                     <div class="collapse navbar-collapse" id="navegacion">
                         <ul class="navbar-nav text-center mx-auto">
                             <li class="nav-item">
@@ -47,11 +48,11 @@
                 </nav>
             </div>
         </header>
-
+        <!-- seccion para buscar pelis-->
         <div>
             <h2 id="busqueda">Busca tu Peli</h2>
         </div>
-
+        <!--formulario busqueda pelis-->
         <form class="input mb-3" id="formulario">
             <label for="busquedaUsuario">Nombre de Película:</label>
             <input type="text" id="busquedaUsuario" name="busquedaUsuario" class="form-control" value="" required pattern="[a-zA-Z\s]+"/>
@@ -60,6 +61,7 @@
             </div>
         </form>
 
+        <!--contenedor para mostrar respuesta de la busqueda-->
         <div id="respuesta"></div>
 
         <footer>
