@@ -20,11 +20,13 @@
 
 </head>
     <body>
+        <!--encabezado de pagina-->
         <header class="container-fluid">
             <a href="index.html">
                 <h1>Listado de Peliculas</h1>
             </a>
             <div class="row">
+                <!--barra de navegacion-->
                 <nav class="col navbar navbar-expand-md navbar-dark">
             
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navegacion" aria-controls="navegacion" aria-expanded="false" aria-label="Menú Hamburguesa">
@@ -32,6 +34,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navegacion">
+                    <!--enlaces de nav-->
                     <ul class="navbar-nav text-center mx-auto">
                         <li class="nav-item">
                             <a class="nav-link px-3" id="posicion" href="#home">Nosotros</a>
@@ -50,6 +53,7 @@
             </div>
         </header>
 
+        <!--contenido principal-->
         <div>
             <h2 id="home">Nosotros</h2>
                 <div class="about">
@@ -64,12 +68,13 @@
                         <br>Somos más que un simple buscador de Películas. <br><br>¡Explora, descubre y sumérgete en el maravilloso universo del cine con nosotros!</p> 
                 </div>
 
+                <!--boton para ir a la seccion busqueda-->
                 <div class="ir">
                     <a class="btn-peliculas" href="busqueda.html#busqueda">Buscar Película</a>
                 </div>
         </div>
 
-                <!-- Sección de Contacto -->
+        <!--sección de contacto -->
         <section id="contacto">
             <h2>Contacto</h2>
             <form id="formularioContacto" method="POST" action="contacto.php">
@@ -90,6 +95,7 @@
         </section>
         <div id="mensajeError" style="display: none; color: red;"></div>
 
+        <!--boton para instalar la pwa-->
         <button id="installButton" class="btn btn-success" style="display: none;">Instalar PWA</button>
 
         <footer>
@@ -121,7 +127,7 @@
             measurementId: "G-38YPGSDYLC"
         };
 
-        // Initialize Firebase
+        //inicializacion Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
