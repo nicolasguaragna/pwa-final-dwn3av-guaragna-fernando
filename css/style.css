@@ -8,7 +8,7 @@ body{
     background-position: center;
     background-repeat: no-repeat;
 }
-/* Estilos generales para todos los elementos */
+/*estilos generales para todos los elementos */
 *{
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ body{
     font-family: 'Poppins', sans-serif;
 }
 
-/*Fondo semi-transparente para el cuerpo*/
+/*fondo semi-transparente para el cuerpo*/
 body::before {
     content: "";
     position: fixed;
@@ -28,7 +28,7 @@ body::before {
     z-index: -1; 
 }
 
-/* Estilos del encabezado */
+/*estilos del encabezado */
 header{
 	background-color: #001F3F;
 	text-align:center;
@@ -62,6 +62,7 @@ a{
     color:#e0e5e9 !important;
 }
 
+/*estilos del subencabezado h2*/
 h2{
     background-color: #FFA07A;
     border-radius: 15px;
@@ -73,6 +74,7 @@ h2{
     width: 15%;
 }
 
+/*animación para girar el h2 */
 @keyframes girar {
     from {
     transform: rotate(0deg);
@@ -82,12 +84,13 @@ h2{
     }
 }
 
+/* estilos para alertas de éxito */
 .alert-success {
     margin-bottom: 0 !important;
     text-align: center;
 }
 
-
+/*estilos para la sección about*/
 .about{
     width: 50%;
     margin: 1em auto;
@@ -102,6 +105,7 @@ h2{
     z-index: -1; 
 }
 
+/* estilos para listas en la sección about */
 .about ul{
     list-style: none;
 }
@@ -117,6 +121,7 @@ h2{
     color:#252c16;
 }
 
+/*estilos para botones y enlaces de colores */
 .btn-color{
 	color:white;
 }
@@ -137,6 +142,7 @@ h2{
     text-decoration: none !important;
 }
 
+/* para el formulario de búsqueda */
 .ir {
     display: flex;
     justify-content: center;
@@ -180,10 +186,12 @@ label{
     margin: 0 auto;
 }
 
+/* Estilos para las cards */
 .card {
     margin: 0 auto !important;
 }
 
+/* Estilos para el pie de página */
 footer{
 	width: 100%;
 	text-align:center;
@@ -205,6 +213,7 @@ footer div{
     margin: 1em;
 }
 
+/*estilos para elementos ocultos */
 a{
     text-decoration: none;
 }
@@ -213,6 +222,7 @@ a{
     display: none;
 }
 
+/*estilos para el formulario de contacto */
 #formularioContacto {
     width: 80%; 
     max-width: 600px; 
@@ -250,6 +260,7 @@ a{
     background-color: #001F3F;
 }
 
+/* versión offline de la app */
 body.offline {
     display: flex;
     align-items: center;
@@ -267,7 +278,7 @@ body.offline {
     font-weight: bold; 
 }
 
-/* Media query para pantallas con ancho igual o menor a 600px */
+/*media query para pantallas con ancho igual o menor a 600px */
 @media (max-width: 756px) {
     h1{
     font-size: 1.5em;   
@@ -281,6 +292,7 @@ body.offline {
     }
 }
 
+/*media query para pantallas con ancho igual o menor a 573px */
 @media (max-width: 573px) {
     h1{
     font-size: 1em;   
@@ -296,6 +308,7 @@ body.offline {
         width: 90%;
     }
 
+    /*estilos específicos para pantallas pequeñas */
     .about p{
     font-weight:200;
     font-size: 14px;
@@ -320,6 +333,7 @@ body.offline {
     }
 
 }
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -328,6 +342,7 @@ body.offline {
     user-select: none;
 }
 
+/*media query para pantallas con ancho igual o mayor a 768px */
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
     font-size: 3.5rem;
@@ -372,6 +387,8 @@ body.offline {
     -webkit-overflow-scrolling: touch;
 }
 
+
+/*estilos para botones de Bootstrap personalizados */
 .btn-bd-primary {
     --bd-violet-bg: #712cf9;
     --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
@@ -389,6 +406,7 @@ body.offline {
     --bs-btn-active-border-color: #5a23c8;
 }
 
+/*estilos para el interruptor de modo oscuro */
 .bd-mode-toggle {
     z-index: 1500;
 }
@@ -396,6 +414,8 @@ body.offline {
 .bd-mode-toggle .dropdown-menu .active .bi {
     display: block !important;
 }
+
+/*estilos para el formulario de inicio de sesión */
 .form-signin {
     max-width: 350px;
     padding: 1rem;
