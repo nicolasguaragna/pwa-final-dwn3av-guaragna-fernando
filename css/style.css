@@ -415,7 +415,7 @@ body.offline {
     display: block !important;
 }
 
-/*estilos para el formulario de inicio de sesión */
+/* Estilos para el formulario de inicio de sesión */
 .form-signin {
     max-width: 350px;
     padding: 1rem;
