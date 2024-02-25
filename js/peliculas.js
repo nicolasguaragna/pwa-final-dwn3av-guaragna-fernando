@@ -113,6 +113,26 @@ function mostrarMensajeError(mensaje) {
     }
 }
 
+// Función para obtener y mostrar todos los títulos
+async function mostrarTodosTitulos() {
+    const apiUrl = "https://www.omdbapi.com";
+    const API_KEY = "3c08695a";
+
+    // Realiza una solicitud a la API para obtener todos los títulos
+    const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&s=action*&type=movie`); // El parámetro 's=*' devuelve todos los títulos
+
+    // Tira un error si la respuesta no es exitosa
+    if (!response.ok) {
+        throw new Error(`Error de red: ${response.status}`);
+    }
+
+    // Parsea la respuesta como JSON
+    const resultados = await response.json();
+
+    // Muestra los resultados en la lista de títulos
+    mostrarResultadosEnLista(resultados.Search);
+}
+
 //maneja la respuesta de la api y muestra resultados en la pag
 function consultaApi(infoPeli) {
     const resultadoConsulta = document.getElementById("respuesta");
@@ -182,3 +202,26 @@ function enviarFormularioContacto(datosFormulario) {
         mostrarMensajeError('Hubo un error al enviar el formulario de contacto. Por favor, inténtalo de nuevo más tarde.');
     });
 }
+
+// Función para mostrar los resultados en la lista
+function mostrarResultadosEnLista(resultados) {
+    const listaTitulos = document.getElementById("lista-titulos");
+
+    // Limpia la lista antes de agregar nuevos elementos
+    listaTitulos.innerHTML = "";
+
+        // Verifica si hay resultados y si hay un array de resultados
+        if (resultados && Array.isArray(resultados)) {
+
+    // Itera sobre los resultados y crea elementos de lista para cada título
+    resultados.forEach((resultado) => {
+        const li = document.createElement("li");
+        li.textContent = resultado.Title;
+        listaTitulos.appendChild(li);
+    });
+} else {
+    console.error('La respuesta de la API no contiene datos válidos:', resultados);
+    }
+}
+// Llama a la función para mostrar todos los títulos después de cargar la página
+mostrarTodosTitulos();
