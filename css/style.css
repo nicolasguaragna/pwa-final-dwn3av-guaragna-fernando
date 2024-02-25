@@ -436,3 +436,18 @@ body.offline {
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
 }
+
+/* Estilos para lista-titulos */
+#lista-titulos {
+    background-color: #ffffff; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 600px; 
+    margin: 20px auto; 
+}
+
+#lista-titulos li {
+    list-style: none;
+    margin-bottom: 10px; 
+}
