@@ -419,22 +419,21 @@ body.offline {
 .form-signin {
     max-width: 350px;
     padding: 1rem;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 3em;
 }
 
 .form-signin .form-floating:focus-within {
     z-index: 2;
 }
 
-.form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
-}
-
+.form-signin input[type="email"],
 .form-signin input[type="password"] {
     margin-bottom: 10px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
 }
 
 /* Estilos para lista-titulos */
@@ -450,4 +449,17 @@ body.offline {
 #lista-titulos li {
     list-style: none;
     margin-bottom: 10px; 
+}
+
+.inicio {
+    font-size: 1em;  
+    color: #007bff;
+    max-width: 100%;  
+}
+
+/* style.css */
+label.no-custom-label-style {
+    background-color: initial;
+    border-radius: initial;
+    color: initial;
 }
