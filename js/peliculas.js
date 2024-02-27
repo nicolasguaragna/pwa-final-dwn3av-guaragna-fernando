@@ -41,7 +41,7 @@ window.addEventListener("load", async function() {//llama a la funcion
 });
 //funcion q se ejecuta despues de q la pag se carga completamente
 async function pagOnline() {
-    var formulario = document.getElementById("formulario");
+    const formulario = document.getElementById("formulario");
     
     //si hay un formulario, agrega un evento listener para la busqueda
     if (formulario !== null) {
