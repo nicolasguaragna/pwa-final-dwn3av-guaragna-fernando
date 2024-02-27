@@ -29,6 +29,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
         });
     }
 });
+
 //este evento se dispara cuando la pag se carga completamente
 window.addEventListener("load", async function() {//llama a la funcion 
     try {
@@ -119,8 +120,7 @@ async function mostrarTodosTitulos() {
     const API_KEY = "3c08695a";
 
     // Realiza una solicitud a la API para obtener todos los títulos
-    const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&s=action*&type=movie`); // El parámetro 's=*' devuelve todos los títulos
-
+    const response = await fetch(`${apiUrl}/?apikey=${API_KEY}&s=star wars*&type=movie`); // El parámetro 's=*' devuelve todos los títulos
     // Tira un error si la respuesta no es exitosa
     if (!response.ok) {
         throw new Error(`Error de red: ${response.status}`);
