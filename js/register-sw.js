@@ -3,12 +3,16 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('./service-worker.js') //registra el archivo
         .then(reg => {
             console.log("¡Service worker está listo!");//imprime msj en la consola si el registro es exitoso
+        })
+        .catch(error => {
+            console.error("Error al registrar el Service Worker:", error);
         });
 }
 
 else{
     console.log("Service worker no soportado.");//imprime msj si el navegador no admite SW
 }
+
 //evento listener para cuando la conexion a internet se pierde
     window.addEventListener('offline', event => {
     document.querySelector('body').classList.add('offline');
